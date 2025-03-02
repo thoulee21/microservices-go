@@ -7,37 +7,13 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/gbrayhan/microservices-go/badge/main)](https://www.codefactor.io/repository/github/gbrayhan/microservices-go/overview/main)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6c10cc49928447f38952edaab67a94a4)](https://www.codacy.com/gh/gbrayhan/microservices-go/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gbrayhan/microservices-go&amp;utm_campaign=Badge_Grade)
 
-Example structure to start a microservices project with golang. Using a MySQL databaseSQL. Using a Hexagonal
-Architecture tha is a Clean Architecture.
-
-## Manual Installation
-
-If you would still prefer to do the installation manually, follow these steps:
-
-Clone the repo:
-
-```bash
-git clone https://github.com/gbrayhan/microservices-go
-```
-
-
-**TL;DR command list**
-
-    git clone https://github.com/gbrayhan/microservices-go
-    cd microservices-go
-    cp config.json.example config.json
-    docker-compose up  --build  -d
+Example structure to start a microservices project with golang. Using a MySQL database. Using a Hexagonal
+Architecture that is a Clean Architecture.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Commands](#commands)
-- [Environment Variables](#environment-variables)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [Error Handling](#error-handling)
-- [Validation](#validation)
-- [Linting](#linting)
 
 ## Features
 
@@ -65,18 +41,9 @@ docker-compose up  --build  -d
 
 ### Swagger Implementation
 
-```bash
-swag init -g src/infrastructure/rest/routes/routes.go
-```
-
 To visualize the swagger documentation on local use
 
 http://localhost:8080/v1/swagger/index.html
-
-To see the postman collection use 
-  
-https://www.postman.com/kts-mexico/workspace/boilerplategomicroservice
-
 
 ### Unit test command
 
@@ -92,6 +59,3 @@ go clean -testcache
 ```bash
 golangci-lint run ./...
 ```
-
-
-
