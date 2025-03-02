@@ -11,6 +11,8 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	_ "github.com/gbrayhan/microservices-go/docs"
 )
 
 func main() {
