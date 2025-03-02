@@ -1,4 +1,3 @@
-version: '3'
 services:
   go-microservice:
     build: .
@@ -15,6 +14,7 @@ services:
       - JWT_REFRESH_SECRET=refreshkeyyoumayneedtochangeit
       - JWT_REFRESH_TIME_HOUR=10
       - SERVER_PORT=8080
+      - GIN_MODE=release
     ports:
       - '8080:8080'
     restart: on-failure
@@ -22,8 +22,9 @@ services:
       - mysqldb
     #volumes:
     #  - .:/srv/go-app
-    networks:
-      - go-network
+    # networks:
+    #   - go-network
+
   mysqldb:
     platform: linux/x86_64
     image: mysql:8.0
@@ -32,28 +33,27 @@ services:
       MYSQL_DATABASE: 'boilerplate_go'
       # Password for root access
       MYSQL_ROOT_PASSWORD: 'youShouldChangeThisPassword'
-      MYSQL_HOST: "%" # Allow connections from outside the container
+      MYSQL_HOST: 'mysqldb'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'appuser'
       # You can use whatever password you like
       MYSQL_PASSWORD: 'youShouldChangeThisPassword'
     ports:
       # <Port exposed> : < MySQL Port running inside container>
-      - '33006:3306'
-    expose:
-      # Opens port 3306 on the container
-      - '3306'
+      - '3306:3306'
+      # expose:
+      #   # Opens port 3306 on the container
+      #   - '3306'
       # Where our data will be persisted
     volumes:
       - ./docker/scripts/schema.sql:/docker-entrypoint-initdb.d/setup.sql
       - dbdata:/var/lib/mysql
-
-    networks:
-      - go-network
+    # networks:
+    #   - go-network
 
 volumes:
   dbdata:
 
-networks:
-  go-network:
-    driver: bridge
+    # networks:
+    #   go-network:
+    #     driver: bridge
