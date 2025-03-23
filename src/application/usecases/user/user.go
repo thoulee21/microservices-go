@@ -9,9 +9,9 @@ type IUserUseCase interface {
 	GetAll() (*[]userDomain.User, error)
 	GetByID(id int) (*userDomain.User, error)
 	Create(newUser *userDomain.User) (*userDomain.User, error)
-	GetOneByMap(userMap map[string]interface{}) (*userDomain.User, error)
+	GetOneByMap(userMap map[string]any) (*userDomain.User, error)
 	Delete(id int) error
-	Update(id int, userMap map[string]interface{}) (*userDomain.User, error)
+	Update(id int, userMap map[string]any) (*userDomain.User, error)
 }
 
 type UserUseCase struct {
