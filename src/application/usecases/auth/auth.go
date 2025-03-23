@@ -33,7 +33,7 @@ type Auth struct {
 }
 
 func (s *AuthUseCase) Login(user LoginUser) (*SecurityAuthenticatedUser, error) {
-	userMap := map[string]interface{}{"email": user.Email}
+	userMap := map[string]any{"email": user.Email}
 	domainUser, err := s.userRepository.GetOneByMap(userMap)
 	if err != nil {
 		return &SecurityAuthenticatedUser{}, err
@@ -71,7 +71,7 @@ func (s *AuthUseCase) AccessTokenByRefreshToken(refreshToken string) (*SecurityA
 	if err != nil {
 		return nil, err
 	}
-	userMap := map[string]interface{}{"id": claimsMap["id"]}
+	userMap := map[string]any{"id": claimsMap["id"]}
 	domainUser, err := s.userRepository.GetOneByMap(userMap)
 	if err != nil {
 		return nil, err
