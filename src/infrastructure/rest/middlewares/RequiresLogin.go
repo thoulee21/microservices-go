@@ -23,8 +23,8 @@ func AuthJWTMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		if strings.HasPrefix(tokenString, "Bearer ") {
-			tokenString = strings.TrimPrefix(tokenString, "Bearer ")
+		if after, ok :=strings.CutPrefix(tokenString, "Bearer "); ok  {
+			tokenString = after
 		}
 		claims := jwt.MapClaims{}
 		_, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (any, error) {
